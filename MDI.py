@@ -41,18 +41,18 @@ include='&'
 def movie_db():
     
     try:
-        movie_name=input("Enter movie name:")
+        movie_name=input("Enter movie name: ")
         if(movie_name.find(" ")):
             movie_name=movie_name.replace(" ", "+")
-        choice=input("Do you want to search by year(Y or N):")
+        choice=input("Do you want to search by year(Y or N): ")
         if (choice=='Y')or(choice=='y'):
             release_year=input("Enter year: ")
             search=API+movie+movie_name+include+year+release_year+include+plot+include+rt_rating
         else:
             search=API+movie+movie_name+include+plot+include+rt_rating
     except:
-        print("Movie not found")
-        exit();    
+        print("Movie not found. Try Again")
+        input();    
     #Parsing and loading JSON data
     try:
         file=urlopen(search)
@@ -60,7 +60,7 @@ def movie_db():
         result=json.loads(str(soup))
     except:
         print("Website Error!!!! Please try again")
-        exit()
+        input()
 
     #Movie Information  
     info=['Title', 'Year', 'Rated', 'Released', 'Runtime', 'Genre',
@@ -68,7 +68,11 @@ def movie_db():
          'Poster', 'Metascore', 'imdbRating', 'Type' ]
 
     for names in info:
-        result[names]
+        try:
+            result[names]
+        except KeyError:
+            print("Please check the movie name...\n")
+            movie_db()
     
     #Formating information
     print(100*'*'+"\n")
@@ -92,7 +96,7 @@ def movie_db():
 def poster():
     download=input("Do you want to download the movie poster?")
     if (download=='Y')or(download=='y'):
-        choose=input("The file will be saved in the default directory as the script. If you want to change it.Please press 'Y' or 'y'")
+        choose=input("The file will be saved in the default directory as the script. If you want to change it.Please press 'Y' or 'N'")
         if(choose=='Y')or(choose=='y'):
             location=input("Where do you want to save it(URL):")
             if(path.isdir(location)):
@@ -107,7 +111,7 @@ def poster():
                     img_name=input("File name:")
                 else:
                     save_url=location+"\\"+img_name+".jpg"
-                    print(save_url)
+                    print("You file has been downloaded to "+save_url)
                     urlretrieve(result['Poster'],str(save_url))
             except:
                 print("File name error. Try again")
@@ -131,3 +135,4 @@ print("Creator: Roni Rengit\n")
 movie_db()
 
 print("Thank you")
+input()
