@@ -9,10 +9,18 @@ Like always, feel free to modify, share this code. Do give me a shout if you fin
 
 Disclaimer: The script is for educational purposes only. The author hold no responsibility whatsover for any misuse.
 
-Credits:...
-Brian Fritz: Thank you for the OMDB API...
-Quorans: For giving me the idea...
-Stack Overflow: For helping me when I am stuck...
-Python: For being the best...
+Credits:
+
+
+Brian Fritz: Thank you for the OMDB API.
+
+
+Quorans: For giving me the idea.
+
+
+Stack Overflow: For helping me when I am stuck.
+
+
+Python: For being the best.
 
 
